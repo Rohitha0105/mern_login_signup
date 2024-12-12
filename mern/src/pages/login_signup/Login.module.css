@@ -1,0 +1,36 @@
+.heading{
+    color: red;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.full{
+    background-color: peachpuff;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center; 
+}
+.button{
+    background-color: purple;
+    border-radius: 5px;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+}
+.container{
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 25px;
+    justify-content: center;
+    display: flex;
+    border-spacing: 5px;
+    margin: auto;
+}
+.space{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
