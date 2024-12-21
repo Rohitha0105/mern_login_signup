@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const secret = "Rohi@05"
 
 const Signups= async(req,res) =>{
-    const{email,password}= req.body;
+    const{name,email,password}= req.body;
 
 try{
     const sign = await Signup.findOne({email:email});
@@ -16,6 +16,7 @@ try{
         res.status(400).json({message:"User Already Exist"})
     }else{
         const user = await Signup.create({
+            name,
             email,
             password: hashpassword
         });
@@ -43,10 +44,24 @@ const Logins = async(req , res) =>{
         const token = await jwt.sign({userId: login._id}, secret,{
             expiresIn: "30h",
         });
-        res.status(200).json({message: "User login sucessfull"})
+        res.status(200).json({message: "User login sucessfull",token})
      }
     } catch(error){
         console.log(error)
     };
  }
-module.exports = {Signups,Logins};
+
+ const GetUser = async(req,res) => {
+    try{
+        const VerifiedUser = await Signup.findById(req.UserId);
+        if(!VerifiedUser){
+            res.status(400).json({message:"User Not Found"});
+        }
+
+        res.status(200).json(VerifiedUser);
+    } catch(error){
+        console.log(error);
+    }
+ }
+
+module.exports = {Signups,Logins,GetUser}; 

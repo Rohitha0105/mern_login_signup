@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
 const Signup = () => {
+  const[name,setname] = useState()
   const[email,setemail] = useState()
   const[password,setpassword] = useState()
   
@@ -12,7 +13,7 @@ const Signup = () => {
         headers:{
           'content-Type':"application/json"
         },
-        body:JSON.stringify({email,password})
+        body:JSON.stringify({name,email,password})
       })
       const response = await sendSign.json();
 
@@ -32,6 +33,7 @@ const Signup = () => {
         <h1>Signup</h1>
         <div>
         <div>
+            <input type='text' name='name' id ="" placeholder='Name' onChange={(e)=>setname(e.target.value)}/> 
             <input type='email' name='email' id ="" placeholder='Email' onChange={(e)=>setemail(e.target.value)}/>
             <input type='password' name='password' id='' placeholder='Password' onChange={(e)=>setpassword(e.target.value)}/>
             <button onClick={onsubmit} type='submit'>Sign Up</button>
